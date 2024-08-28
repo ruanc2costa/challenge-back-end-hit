@@ -21,9 +21,12 @@ public class Planeta {
     private String clima;
 
     @NotNull
-    private int numeroAparicoes;
+    private String terreno;
 
-    public Planeta(String nome, String clima) {
+    @NotNull
+    private Integer numeroAparicoes;
+
+    public Planeta(String nome, String clima, String terreno) {
         this.nome = nome;
         this.clima = clima;
     }
@@ -33,12 +36,12 @@ public class Planeta {
     public Planeta(PlanetaDTO planetaDTO){
         this.nome = planetaDTO.getNome();
         this.clima = planetaDTO.getClima();
+        this.terreno = planetaDTO.getTerreno();
     }
 
     public Long getId() {
         return id;
     }
-
 
     public @NotNull String getNome() {
         return nome;
@@ -56,12 +59,20 @@ public class Planeta {
         this.clima = clima;
     }
 
+    public @NotNull String getTerreno() {
+        return terreno;
+    }
+
+    public void setTerreno(@NotNull String terreno) {
+        this.terreno = terreno;
+    }
+
     @NotNull
-    public int getNumeroAparicoes() {
+    public Integer getNumeroAparicoes() {
         return numeroAparicoes;
     }
 
-    public void setNumeroAparicoes(@NotNull int numeroAparicoes) {
+    public void setNumeroAparicoes(@NotNull Integer numeroAparicoes) {
         this.numeroAparicoes = numeroAparicoes;
     }
 }

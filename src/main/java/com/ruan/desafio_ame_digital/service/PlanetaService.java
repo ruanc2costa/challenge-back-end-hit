@@ -7,6 +7,7 @@ import com.ruan.desafio_ame_digital.dto.PlanetaDTO;
 import com.ruan.desafio_ame_digital.model.Planeta;
 import com.ruan.desafio_ame_digital.model.swapiResponse;
 import com.ruan.desafio_ame_digital.repository.PlanetaRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.hibernate.internal.util.StringHelper;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -51,5 +52,21 @@ public class PlanetaService {
             planetaDTOS.add(new PlanetaDTO(planeta));
         }
         return planetaDTOS;
+    }
+
+    public PlanetaDTO listarPlaneta(long id){
+        Planeta planeta = planetaRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+        PlanetaDTO planetaDTO = new PlanetaDTO(planeta);
+        return planetaDTO;
+    }
+
+    public PlanetaDTO listarPorNome(String nome){
+        Planeta planeta = planetaRepository.findByNome(nome);
+        PlanetaDTO planetaDTO = new PlanetaDTO(planeta);
+        return planetaDTO;
+    }
+
+    public void deletarPlaneta(long id){
+        planetaRepository.deleteById(id);
     }
 }
